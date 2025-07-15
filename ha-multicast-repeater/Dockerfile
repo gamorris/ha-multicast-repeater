@@ -10,7 +10,7 @@ RUN \
         git \
     \
     && git clone -b ${MDNS_REPEATER_VERSION} --depth 1 \
-        https://github.com/pvizeli/mdns-repeater /usr/src/mdns \
+        https://github.com/gamorris/mdns-repeater /usr/src/mdns \
     && cd /usr/src/mdns \
     && gcc -O3 -o /usr/bin/mdns-repeater \
         mdns-repeater.c -DVERSION="\"${MDNS_REPEATER_VERSION}\"" \

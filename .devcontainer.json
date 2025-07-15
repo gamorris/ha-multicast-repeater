@@ -1,22 +1,33 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the
-// README at: https://github.com/devcontainers/templates/tree/main/src/alpine
 {
-	"name": "Alpine",
-	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/base:alpine-3.18"
-
-	// Features to add to the dev container. More info: https://containers.dev/features.
-	// "features": {},
-
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
-
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "uname -a",
-
-	// Configure tool-specific properties.
-	// "customizations": {},
-
-	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
-	// "remoteUser": "root"
+  "name": "Example devcontainer for add-on repositories",
+  "image": "ghcr.io/home-assistant/devcontainer:2-addons",
+  "appPort": ["7123:8123", "7357:4357"],
+  "postStartCommand": "bash devcontainer_bootstrap",
+  "runArgs": ["-e", "GIT_EDITOR=code --wait", "--privileged"],
+  "workspaceFolder": "/mnt/supervisor/addons/local/${localWorkspaceFolderBasename}",
+  "workspaceMount": "source=${localWorkspaceFolder},target=${containerWorkspaceFolder},type=bind,consistency=cached",
+  "containerEnv": {
+    "WORKSPACE_DIRECTORY": "${containerWorkspaceFolder}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["timonwong.shellcheck", "esbenp.prettier-vscode"],
+      "settings": {
+        "terminal.integrated.profiles.linux": {
+          "zsh": {
+            "path": "/usr/bin/zsh"
+          }
+        },
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.formatOnPaste": false,
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  },
+  "mounts": [
+    "type=volume,target=/var/lib/docker",
+    "type=volume,target=/mnt/supervisor"
+  ]
 }

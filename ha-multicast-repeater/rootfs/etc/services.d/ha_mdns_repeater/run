@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bashio
+# ==============================================================================
+# Start mDNS repeater service
+# ==============================================================================
+
+# Declare variables
+declare net1 net2
+
+## Get the 'net1' key from the user config options.
+net1=$(bashio::config 'net1')
+net2=$(bashio::config 'net2')
+
+bashio::log.info "configured networks ${net1} ${net2}"
+
+exec mdns-repeater -f ${net1} ${net2}

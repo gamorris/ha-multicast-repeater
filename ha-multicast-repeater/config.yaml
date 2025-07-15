@@ -1,0 +1,18 @@
+name: "mDNS Repeater"
+description: "A home-built Home Assistant addon wrapper for mdns-repeater."
+version: "1.0.0"
+slug: "ha_multicast_repeater"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+  - i386
+host_network: true
+options:
+  net1: "end0"
+  net2: "end0.6"
+schema:
+  net1: "str?"
+  net2: "str?"
