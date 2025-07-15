@@ -12,4 +12,4 @@ net2=$(bashio::config 'net2')
 
 bashio::log.info "configured networks ${net1} ${net2}"
 
-exec mdns-repeater -l 0 -f ${net1} ${net2}
+exec mdns-repeater -l 7 -f ${net1} ${net2}
