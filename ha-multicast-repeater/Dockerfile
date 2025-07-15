@@ -20,3 +20,4 @@ RUN \
         /usr/src/mdns
 
 COPY rootfs /
+RUN chmod 755 /etc/services.d/ha_mdns_repeater/*
